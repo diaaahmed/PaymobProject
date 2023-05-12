@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('acceptsdk-release (2).aar'))

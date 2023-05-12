@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.paymob.acceptsdk.PayActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/small_padding_value"
+            android:paddingLeft="@dimen/large_padding_value"
+            android:paddingRight="@dimen/large_padding_value"
+            android:paddingBottom="@dimen/normal_padding_value"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/PoweredByLinearLayout" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/cardName_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/large_padding_value"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/tiny_padding_value"
+                        android:text="Full Name"
+                        android:textSize="@dimen/normal_text_size"
+                        android:textColor="@color/colorText" />
+
+                    <EditText
+                        android:id="@+id/cardName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/normal_padding_value"
+                        android:textSize="@dimen/normal_text_size"
+                        android:textColor="@color/colorText"
+                        android:textColorHint="@color/colorHint"
+                        android:textStyle="bold"
+                        android:inputType="textCapCharacters"
+                        android:hint="JOHN DOE"
+                        android:imeOptions="actionNext"
+                        android:background="@drawable/edit_text_field"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/large_padding_value"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/tiny_padding_value"
+                        android:text="Card Number"
+                        android:textSize="@dimen/normal_text_size"
+                        android:textColor="@color/colorText" />
+
+                    <morxander.editcard.EditCard
+                        android:id="@+id/cardNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_field"
+                        android:hint="XXXX-XXXX-XXXX-XXXX"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:padding="@dimen/normal_padding_value"
+                        android:textColor="@color/colorText"
+                        android:textColorHint="@color/colorHint"
+                        android:textSize="@dimen/normal_text_size"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/large_padding_value"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/expiration_linearLayout"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="@dimen/large_padding_value"
+                        android:layout_marginEnd="@dimen/large_padding_value">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expiration"
+                            android:textSize="@dimen/normal_text_size"
+                            android:layout_marginBottom="@dimen/tiny_padding_value"
+                            android:textColor="@color/colorText" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/expiryMonth"
+                                android:layout_gravity="start"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/normal_padding_value"
+                                android:textSize="@dimen/normal_text_size"
+                                android:textColor="@color/colorText"
+                                android:textColorHint="@color/colorHint"
+                                android:textStyle="bold"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:maxLines="1"
+                                android:hint="MM"
+                                android:imeOptions="actionNext"
+                                android:background="@drawable/edit_text_field"/>
+
+                            <TextView
+                                android:id="@+id/Slash"
+                                android:text=" / "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/normal_padding_value"
+                                android:textSize="@dimen/normal_text_size"
+                                android:textColor="@color/colorText"
+                                android:textColorHint="@color/colorHint"
+                                android:textStyle="bold"
+                                android:background="@drawable/edit_text_field"/>
+
+                            <EditText
+                                android:layout_gravity="right"
+                                android:id="@+id/expiryYear"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/normal_padding_value"
+                                android:textSize="@dimen/normal_text_size"
+                                android:textColor="@color/colorText"
+                                android:textColorHint="@color/colorHint"
+                                android:textStyle="bold"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:maxLines="1"
+                                android:hint="YY"
+                                android:imeOptions="actionNext"
+                                android:background="@drawable/edit_text_field"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CVV"
+                            android:textSize="@dimen/normal_text_size"
+                            android:layout_marginBottom="@dimen/tiny_padding_value"
+                            android:textColor="@color/colorText" />
+
+                        <EditText
+                            android:id="@+id/cvv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/normal_padding_value"
+                            android:textSize="@dimen/normal_text_size"
+                            android:textColor="@color/colorText"
+                            android:textColorHint="@color/colorHint"
+                            android:textStyle="bold"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:maxLines="1"
+                            android:hint="123"
+                            android:background="@drawable/edit_text_field"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/saveCard_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/normal_padding_value">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/saveCardCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:shadowColor="@color/colorHint" />
+
+                    <TextView
+                        android:id="@+id/saveCardText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Save card for future use"
+                        android:textColor="@color/colorText"
+                        android:textSize="@dimen/normal_text_size"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/pay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normal_padding_value"
+                    android:background="@drawable/button_shape"
+                    android:text="Pay"
+                    android:textColor="#FFFFFF"
+                    android:textSize="@dimen/large_text_size"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/PoweredByLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="@dimen/small_padding_value"
+            android:layout_centerHorizontal="true" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorText"
+                android:layout_gravity="center"
+                android:gravity="end"
+                android:textSize="@dimen/normal_text_size"
+                android:text="Powered by"/>
+
+            <ImageView
+                android:layout_marginLeft="@dimen/small_padding_value"
+                android:layout_marginStart="@dimen/small_padding_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

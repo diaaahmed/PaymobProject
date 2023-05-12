@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#CC0bd796</color>
+    <color name="colorDefaultButton">#CC0bd796</color>
+    <color name="colorHint">#96b1bc</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorText">#4F7283</color>
+    <dimen name="large_padding_value">20dp</dimen>
+    <dimen name="large_text_size">18sp</dimen>
+    <dimen name="normal_padding_value">15dp</dimen>
+    <dimen name="normal_text_size">14sp</dimen>
+    <dimen name="small_padding_value">10dp</dimen>
+    <dimen name="tiny_padding_value">5dp</dimen>
+    <string name="app_id">app_id</string>
+    <string name="app_name">AcceptSDK</string>
+    <string name="pref_file_name">shared_pref</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>
