@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity()
             if(it == true)
             {
                 //startActivity(Intent(this,IframeActivity::class.java))
-                startActivity(Intent(this,NewActivity::class.java))
+                startActivity(Intent(this,PayScreenActivity::class.java))
             }
         }
     }

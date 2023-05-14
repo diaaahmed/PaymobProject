@@ -9,7 +9,7 @@ import com.esh7enly.paymobproject.databinding.ActivityNewBinding
 import com.paymob.acceptsdk.*
 
 @Suppress("DEPRECATION")
-class NewActivity : AppCompatActivity()
+class PayScreenActivity : AppCompatActivity()
 {
     private val ui by lazy{
         ActivityNewBinding.inflate(layoutInflater)
