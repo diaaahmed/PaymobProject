@@ -15,10 +15,10 @@ import javax.inject.Inject
 private const val TAG = "MainViewModel"
 
 // Don`t forget replace with your payment key
-private val paymentKey = "ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TkRrMU1UY3lMQ0p1WVcxbElqb2lNVFk0TkRBM01ETTJOaTR5T1RRd01qY2lmUS5tM1NEdlFKN1hfQzJ2NEJaOVl3S3NFUkYyT0dmRkN4c0QwVDRfX2pXZEpmaHZMSUZDZFU0S3ZzUGlldUxaX2FyMFFfOGtKMnF3RzFPci1LeDVPQmc1Zw=="
+private const val paymentKey = "ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TkRrMU1UY3lMQ0p1WVcxbElqb2lNVFk0TkRBM01ETTJOaTR5T1RRd01qY2lmUS5tM1NEdlFKN1hfQzJ2NEJaOVl3S3NFUkYyT0dmRkN4c0QwVDRfX2pXZEpmaHZMSUZDZFU0S3ZzUGlldUxaX2FyMFFfOGtKMnF3RzFPci1LeDVPQmc1Zw=="
 
-private val integrationIdCard = 2765637
-private val integrationIdKiosk = 3707140
+private const val integrationIdCard = 2765637
+private const val integrationIdKiosk = 3707140
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val getServices: GetServices)
@@ -30,8 +30,7 @@ class MainViewModel @Inject constructor(private val getServices: GetServices)
     private val _move: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val move: LiveData<Boolean> = _move
 
-    fun getKioskPayment(finalToken:String)
-    {
+    private fun getKioskPayment(finalToken:String) {
         viewModelScope.launch {
            val paymentKioskResponse =  getServices.paymentKiosk(
                KioskRequest(
@@ -69,55 +68,8 @@ class MainViewModel @Inject constructor(private val getServices: GetServices)
                     Log.d(TAG, "diaa getToken done ${tokenResponse.body()?.token}")
                     val token = tokenResponse.body()?.token
 
-                   val orderResponse =  getServices.getOrder(
-                       OrderModel(token.toString(), "false", "20000", "EGP")
-                   )
+                    getOrderID(token.toString())
 
-                    if(orderResponse.isSuccessful)
-                    {
-                        Log.d(TAG, "diaa getOrder done ${orderResponse.body()?.id}")
-                        val orderId = orderResponse.body()?.id
-
-                        val requestModel = PaymentRequest(
-                            "20000", token.toString(),
-                            BillingData(
-                                "NA", "NA", "NA", "NA",
-                                "diaaahmedh200@gmail.com", "Diaa", "NA",
-                                "Ahmed", "01028237267", "NA", "NA",
-                                "NA", "NA"
-                            ), "EGP", 3600, integrationIdCard,
-                            "true",
-                            orderId.toString()
-                        )
-
-                        val paymentResponse = getServices.paymentRequest(requestModel)
-
-                        if(paymentResponse.isSuccessful)
-                        {
-                            Log.d(TAG, "diaa paymentRequest done ${paymentResponse.body()?.token}")
-
-                            val finalToken = paymentResponse.body()?.token
-                            Constant.finalToken = finalToken.toString()
-                            _move.value = true
-                          //  getKioskPayment(finalToken.toString())
-
-                        }
-                        else
-                        {
-                            Log.d(
-                                TAG, "diaa paymentRequest error body ${paymentResponse.code()}" +
-                                        " ${paymentResponse.message()}"
-                            )
-                        }
-                    }
-                    else
-                    {
-                        Log.d(
-                            TAG, "diaa getOrder error body ${orderResponse.code()}" +
-                                    " ${orderResponse.message()}"
-                        )
-
-                    }
                 }
                 else
                 {
@@ -134,6 +86,63 @@ class MainViewModel @Inject constructor(private val getServices: GetServices)
 
                 Log.d(TAG, "diaa getToken error: ${e.message}")
             }
+        }
+    }
+
+    private suspend fun getOrderID(token:String) {
+        val orderResponse =  getServices.getOrder(
+            OrderModel(token, "false", "20000", "EGP")
+        )
+
+        if(orderResponse.isSuccessful)
+        {
+            Log.d(TAG, "diaa getOrder done ${orderResponse.body()?.id}")
+            val orderId = orderResponse.body()?.id
+
+            getPaymentRequest(orderId.toString(),token)
+
+        }
+        else
+        {
+            Log.d(
+                TAG, "diaa getOrder error body ${orderResponse.code()}" +
+                        " ${orderResponse.message()}"
+            )
+
+        }
+    }
+
+    private suspend fun getPaymentRequest(orderId:String,token:String) {
+        val requestModel = PaymentRequest(
+            "20000", token,
+            BillingData(
+                "NA", "NA", "NA", "NA",
+                "diaaahmedh200@gmail.com", "Diaa", "NA",
+                "Ahmed", "01028237267", "NA", "NA",
+                "NA", "NA"
+            ), "EGP", 3600, integrationIdCard,
+            "true",
+            orderId
+        )
+
+        val paymentResponse = getServices.paymentRequest(requestModel)
+
+        if(paymentResponse.isSuccessful)
+        {
+            Log.d(TAG, "diaa paymentRequest done ${paymentResponse.body()?.token}")
+
+            val finalToken = paymentResponse.body()?.token
+            Constant.finalToken = finalToken.toString()
+            _move.value = true
+            //  getKioskPayment(finalToken.toString())
+
+        }
+        else
+        {
+            Log.d(
+                TAG, "diaa paymentRequest error body ${paymentResponse.code()}" +
+                        " ${paymentResponse.message()}"
+            )
         }
     }
 
