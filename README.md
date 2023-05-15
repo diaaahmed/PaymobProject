@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="[your_relative_path_here](https://paymob.com//8080/uploads/paymob/images/1599746546grid2.png)" width="350" title="Paymob">
+  <img src="https://paymob.com//8080/uploads/paymob/images/1599746546grid2.png" width="350" title="Paymob">
 </p>
 
 # PaymobProject
